@@ -100,4 +100,75 @@ void Admin::Print() const
 	cout << endl;
 }
 
+PK::PK(int countRam, int countHardDrives) : countRam(countRam), countHardDrives(countHardDrives)
+{
+	ram = new RAM[this->countRam];
+	hardDrives = new HardDrive[this->countHardDrives];
+	guest = nullptr;
+	admin = nullptr;
+}
 
+PK::~PK()
+{
+	if (hardDrives != nullptr)
+		delete[] hardDrives;
+	if (ram != nullptr)
+		delete[] ram;
+}
+
+void PK::AggregateAdmin(Admin* admin)
+{
+	this->admin = admin;
+}
+
+bool PK::RemoveAdmin()
+{
+	if (admin != nullptr) {
+		admin = nullptr;
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void PK::AggregateGuest(Guest* guest)
+{
+	this->guest = guest;
+}
+
+bool PK::RemoveGuest()
+{
+	if (guest != nullptr) {
+		guest = nullptr;
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void PK::Print() const
+{
+	if (admin != nullptr)
+		admin->Print();
+	if (guest != nullptr)
+		guest->Print();
+
+	motherboard.Print();
+	processor.Print();
+	videocard.Print();
+
+	cout << "Characteristics of RAM:" << endl;
+	for (int i = 0; i < countRam; i++) {
+		cout << i + 1 << ")";
+		ram->Print();
+	}
+
+	cout << "Characteristics of hard drive:" << endl;
+	for (int i = 0; i < countHardDrives; i++) {
+		cout << i + 1 << ")";
+		hardDrives->Print();
+	}
+}
+}

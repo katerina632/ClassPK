@@ -110,62 +110,19 @@ private:
 	Guest* guest;
 	Admin* admin;
 public:
-	PK(int countRam, int countHardDrives) : countRam(countRam), countHardDrives(countHardDrives)
-	{
-		ram = new RAM[this->countRam];
-		hardDrives = new HardDrive[this->countHardDrives];
-		guest = nullptr;
-		admin= nullptr;
-	}
+	PK(int countRam, int countHardDrives);
 
-	void AggregateAdmin(Admin* admin) {
-		this->admin = admin;
-	}
-	bool RemoveAdmin() {
-		if (admin != nullptr) {
-			admin = nullptr;
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
+	~PK();
 
-	void AggregateGuest(Guest* guest) {
-		this->guest = guest;
-	}
-	bool RemoveGuest() {
-		if (guest != nullptr) {
-			guest = nullptr;
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
+	void AggregateAdmin(Admin* admin);
 
-	void Print() const {
-	
-		if (admin != nullptr)
-			admin->Print();
-		if (guest != nullptr)
-			guest-> Print();
+	bool RemoveAdmin();
 
-		motherboard.Print();
-		processor.Print();
-		videocard.Print();
+	void AggregateGuest(Guest* guest);
 
-		cout << "Characteristics of RAM:" << endl;
-		for (int i = 0; i < countRam; i++) {
-			cout << i + 1 << ")";
-			ram->Print();
-		}
+	bool RemoveGuest();
 
-		cout << "Characteristics of hard drive:" << endl;
-		for (int i = 0; i < countHardDrives; i++) {
-			cout << i + 1 << ")";
-			hardDrives->Print();
-		}		
-	}
+	void Print() const;	
+		
 };
 

@@ -1,2 +1,5 @@
-﻿  Source.cpp
+﻿  PK.cpp
+F:\ITStep\2 курс\ДЗ\15) HW Class PK\PK.cpp(20,60): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Source.cpp
+  Generating Code...
   15) HW Class PK.vcxproj -> F:\ITStep\2 курс\ДЗ\15) HW Class PK\Debug\15) HW Class PK.exe
